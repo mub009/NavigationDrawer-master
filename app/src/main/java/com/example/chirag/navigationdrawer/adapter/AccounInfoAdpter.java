@@ -13,10 +13,10 @@ import com.example.chirag.navigationdrawer.model.AccountInfo;
 import java.util.List;
 
 
-public class AccounInfoAdpter extends  RecyclerView.Adapter<RecyclerView.ViewHolder>{
+public class AccounInfoAdpter extends  RecyclerView.Adapter<AccounInfoAdpter.MyViewHolder>{
 
     Context context;
-    public TextView matter,details;
+
     private List<AccountInfo> AccounData;
 
 
@@ -29,7 +29,7 @@ public class AccounInfoAdpter extends  RecyclerView.Adapter<RecyclerView.ViewHol
     public class MyViewHolder extends RecyclerView.ViewHolder
     {
 
-
+        public TextView matter,details;
 
         public MyViewHolder(View itemView) {
             super(itemView);
@@ -41,7 +41,7 @@ public class AccounInfoAdpter extends  RecyclerView.Adapter<RecyclerView.ViewHol
     }
 
     @Override
-    public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+    public MyViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
 
         View itemView= LayoutInflater.from(parent.getContext())
                 .inflate(R.layout.accountinfo_row,parent,false);
@@ -50,18 +50,22 @@ public class AccounInfoAdpter extends  RecyclerView.Adapter<RecyclerView.ViewHol
     }
 
     @Override
-    public void onBindViewHolder(RecyclerView.ViewHolder MyViewHolder, int position) {
+    public void onBindViewHolder(MyViewHolder holder, int position) {
 
         AccountInfo obj = AccounData.get(position);
 
-//        MyViewHolder.matter.setText(obj.getMatter());
-//
-//        MyViewHolder.matter
-//
-//        MyViewHolder.details.setText(obj.getDetails());
+        holder.matter.setText(obj.getMatter());
+        holder.details.setText(obj.getDetails());
+
+
 
 
     }
+
+
+
+
+
 
     @Override
     public int getItemCount() {
