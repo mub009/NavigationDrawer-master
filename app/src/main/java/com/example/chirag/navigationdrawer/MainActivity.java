@@ -1,5 +1,8 @@
 package com.example.chirag.navigationdrawer;
 
+import android.app.Fragment;
+import android.app.FragmentManager;
+import android.app.FragmentTransaction;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
@@ -28,6 +31,8 @@ import android.widget.Toolbar;
 import com.example.chirag.navigationdrawer.adapter.MoviesAdapter;
 import com.example.chirag.navigationdrawer.adapter.SiderAdapter;
 import com.example.chirag.navigationdrawer.broadcast.ConnectvityCheck;
+import com.example.chirag.navigationdrawer.fragment.accountinfo;
+import com.example.chirag.navigationdrawer.fragment.mainfragment;
 import com.example.chirag.navigationdrawer.model.Movie;
 
 import java.util.ArrayList;
@@ -41,6 +46,8 @@ public class MainActivity extends AppCompatActivity implements ConnectvityCheck.
     private DrawerLayout dl;
     private ActionBarDrawerToggle t;
     private NavigationView nv;
+    private Fragment mainfragmentobj,accountinfofragment;
+
     MyApplicationLauncher MyApplicationLauncher = new MyApplicationLauncher();
     private CoordinatorLayout coordinatorLayout;
 
@@ -71,19 +78,19 @@ public class MainActivity extends AppCompatActivity implements ConnectvityCheck.
 //        }
 
 
-        recyclerView = (RecyclerView) findViewById(R.id.recycler_view);
+//        recyclerView = (RecyclerView) findViewById(R.id.recycler_view);
+//
+//        mAdapter = new MoviesAdapter(movieList);
+//
+//        RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getApplicationContext());
+//
+//        recyclerView.setLayoutManager(mLayoutManager);
+//
+//        recyclerView.setItemAnimator(new DefaultItemAnimator());
+//
+//        recyclerView.setAdapter(mAdapter);
 
-        mAdapter = new MoviesAdapter(movieList);
-
-        RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getApplicationContext());
-
-        recyclerView.setLayoutManager(mLayoutManager);
-
-        recyclerView.setItemAnimator(new DefaultItemAnimator());
-
-        recyclerView.setAdapter(mAdapter);
-
-        prepareMovieData();
+       // prepareMovieData();
 
 
 //
@@ -93,7 +100,14 @@ public class MainActivity extends AppCompatActivity implements ConnectvityCheck.
 //
 //        mViewPager.setAdapter(adapterView);
 
+        FragmentManager fm = getFragmentManager();
 
+        FragmentTransaction fragmentTransaction = fm.beginTransaction();
+
+        mainfragmentobj =new mainfragment();
+
+        fragmentTransaction.replace(R.id.fragment_place, mainfragmentobj);
+        fragmentTransaction.commit();
 
 
         dl = (DrawerLayout)findViewById(R.id.activity_main);
@@ -109,30 +123,44 @@ public class MainActivity extends AppCompatActivity implements ConnectvityCheck.
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 int id = item.getItemId();
+
+
+
                 switch(id)
                 {
+                    case R.id.home:
+
+                        mainfragmentobj =new mainfragment();
+                        FragmentManager fm = getFragmentManager();
+
+                        FragmentTransaction fragmentTransaction = fm.beginTransaction();
+
+                        fragmentTransaction.replace(R.id.fragment_place, mainfragmentobj);
+                        fragmentTransaction.commit();
+                        t.setDrawerIndicatorEnabled(false);
+                        break;
+
                     case R.id.account:
 
-                        Intent intent = new Intent(MainActivity.this, MyAccount.class);
-                         startActivity(intent);
-                        //Toast.makeText(MainActivity.this, "My Account",Toast.LENGTH_SHORT).show();
 
-                    case R.id.settings:
-                        Toast.makeText(MainActivity.this, "Settings",Toast.LENGTH_SHORT).show();
-                     case R.id.mycart:
-                        Toast.makeText(MainActivity.this, "My Cart",Toast.LENGTH_SHORT).show();
-                    case R.id.test:
-                        Toast.makeText(MainActivity.this, "test",Toast.LENGTH_SHORT).show();
+                        accountinfofragment =new accountinfo();
+                        FragmentManager fm1 = getFragmentManager();
+
+                        FragmentTransaction fragmentTransaction1 = fm1.beginTransaction();
+
+                        fragmentTransaction1.replace(R.id.fragment_place, accountinfofragment);
+                        t.setDrawerIndicatorEnabled(false);
+                        fragmentTransaction1.commit();
+                        break;
+
 
                     default:
                         return true;
                 }
-
-
-
-
+                return true;
             }
         });
+
 
 
     }
