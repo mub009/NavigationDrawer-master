@@ -4,8 +4,6 @@ import android.app.Fragment;
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
 import android.content.Context;
-import android.content.Intent;
-import android.content.IntentFilter;
 import android.graphics.Color;
 import android.net.ConnectivityManager;
 import android.os.Build;
@@ -14,25 +12,18 @@ import android.support.annotation.RequiresApi;
 import android.support.design.widget.CoordinatorLayout;
 import android.support.design.widget.NavigationView;
 import android.support.design.widget.Snackbar;
-import android.support.v4.view.ViewPager;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.support.v7.widget.DefaultItemAnimator;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
 import android.view.MenuItem;
-import android.view.View;
-import android.widget.TextView;
 import android.widget.Toast;
-import android.widget.Toolbar;
 
 import com.example.chirag.navigationdrawer.adapter.MoviesAdapter;
-import com.example.chirag.navigationdrawer.adapter.SiderAdapter;
 import com.example.chirag.navigationdrawer.broadcast.ConnectvityCheck;
 import com.example.chirag.navigationdrawer.fragment.accountinfo;
 import com.example.chirag.navigationdrawer.fragment.mainfragment;
+import com.example.chirag.navigationdrawer.fragment.mylocation;
 import com.example.chirag.navigationdrawer.model.Movie;
 
 import java.util.ArrayList;
@@ -41,12 +32,11 @@ import java.util.List;
 public class MainActivity extends AppCompatActivity implements ConnectvityCheck.ConnectivityReceiverListener  {
 
     private List<Movie> movieList = new ArrayList<>();
-    private RecyclerView recyclerView;
-    private MoviesAdapter mAdapter;
     private DrawerLayout dl;
     private ActionBarDrawerToggle t;
     private NavigationView nv;
-    private Fragment mainfragmentobj,accountinfofragment;
+    private MoviesAdapter mAdapter;
+    private Fragment mainfragmentobj,accountinfofragment,myLocationFragment;
 
     MyApplicationLauncher MyApplicationLauncher = new MyApplicationLauncher();
     private CoordinatorLayout coordinatorLayout;
@@ -151,8 +141,19 @@ public class MainActivity extends AppCompatActivity implements ConnectvityCheck.
                         fragmentTransaction1.replace(R.id.fragment_place, accountinfofragment);
                         t.setDrawerIndicatorEnabled(false);
                         fragmentTransaction1.commit();
+
                         break;
 
+                    case R.id.location:
+
+                        myLocationFragment =new mylocation();
+                        FragmentManager fm2 = getFragmentManager();
+                        FragmentTransaction fragmentTransaction2 = fm2.beginTransaction();
+                        fragmentTransaction2.replace(R.id.fragment_place, myLocationFragment);
+                        t.setDrawerIndicatorEnabled(false);
+                        fragmentTransaction2.commit();
+
+                        break;
 
                     default:
                         return true;
