@@ -1,6 +1,7 @@
 package com.example.chirag.navigationdrawer.model;
 
 public class AccountInfo {
+
     private String matter, details;
     public AccountInfo(String matter, String details) {
         this.matter = matter;
@@ -18,7 +19,6 @@ public class AccountInfo {
         return matter;
 
     }
-
 
     public String getDetails()
     {

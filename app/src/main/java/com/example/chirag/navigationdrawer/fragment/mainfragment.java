@@ -45,10 +45,6 @@ public class mainfragment extends Fragment {
         recyclerView.setAdapter(mAdapter);
 
 
-
-
-
-
         prepareMovieData();
 
 

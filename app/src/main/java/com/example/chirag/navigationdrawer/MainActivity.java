@@ -4,6 +4,7 @@ import android.app.Fragment;
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
 import android.content.Context;
+import android.content.res.Configuration;
 import android.graphics.Color;
 import android.net.ConnectivityManager;
 import android.os.Build;
@@ -12,11 +13,13 @@ import android.support.annotation.RequiresApi;
 import android.support.design.widget.CoordinatorLayout;
 import android.support.design.widget.NavigationView;
 import android.support.design.widget.Snackbar;
+import android.support.v4.view.ViewCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.Toast;
 
 import com.example.chirag.navigationdrawer.adapter.MoviesAdapter;
@@ -52,7 +55,7 @@ public class MainActivity extends AppCompatActivity implements ConnectvityCheck.
         coordinatorLayout = (CoordinatorLayout) findViewById(R.id
                 .coordinatorLayout);
 
-
+       // getWindow().getDecorView().setLayoutDirection(View.LAYOUT_DIRECTION_RTL);
 
         checkConnection();
 
