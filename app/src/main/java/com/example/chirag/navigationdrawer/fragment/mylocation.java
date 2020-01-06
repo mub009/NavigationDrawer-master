@@ -42,7 +42,7 @@ public class mylocation extends Fragment {
 
         shoplistRecycylerView.setLayoutManager(mLayoutManager);
 
-        shoplistRecycylerView.setAnimation(new DefaultItemAnimator());
+        //shoplistRecycylerView.setAnimation(new DefaultItemAnimator());
 
         shoplistRecycylerView.setAdapter(mshopList);
 
