@@ -50,9 +50,9 @@ public class ShopList extends RecyclerView.Adapter<ShopList.MyViewHolder> {
 
         holder.title.setText(soplistModelObj.getTitle());
 
-        holder.image.setImageResource(soplistModelObj.getImage());
+        holder.image.setImageResource(R.drawable.image2);
 
-
+        //holder.image.setImageURI(soplistModelObj.getImage());
 
     }
 

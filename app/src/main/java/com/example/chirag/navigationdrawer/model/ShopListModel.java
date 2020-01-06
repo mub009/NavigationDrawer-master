@@ -3,10 +3,10 @@ package com.example.chirag.navigationdrawer.model;
 public class ShopListModel {
 
 
-    private String title, image;
-    public ShopListModel(String title, String image) {
+    private String title;
+    public ShopListModel(String title) {
         this.title = title;
-        this.image = image;
+
     }
 
     public String setTitle(String title)
@@ -16,7 +16,4 @@ public class ShopListModel {
 
     public String getTitle() { return title; }
 
-    public String setImage(String image) { return this.image=image; }
-
-    public String getImage() { return image; }
 }
