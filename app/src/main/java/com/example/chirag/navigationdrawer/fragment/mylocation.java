@@ -35,7 +35,7 @@ public class mylocation extends Fragment {
 
         prepareMovieData();
 
-    return view;
+        return view;
     }
 
     private void prepareMovieData() {
