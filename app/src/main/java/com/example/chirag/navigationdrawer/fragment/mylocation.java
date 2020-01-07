@@ -72,11 +72,16 @@ public class mylocation extends Fragment {
                     public void onResponse(JSONObject response) {
 
                         try {
-                            response.getJSONObject("ip");
-                            System.out.println("mubashir "+response);
+//                            response.getJSONObject("ip");
+
+                            System.out.println("mubashir "+response.getJSONObject("ip"));
+
+
                         } catch (JSONException e) {
                             e.printStackTrace();
                         }
+
+                        System.out.println("mubashir "+response);
 //                        response.getJSONObject("ip");
 
 
