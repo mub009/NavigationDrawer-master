@@ -1,6 +1,7 @@
 package com.example.chirag.navigationdrawer.fragment;
 
 import android.app.Fragment;
+import android.app.ProgressDialog;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.RequiresApi;
@@ -10,6 +11,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -30,7 +32,7 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.List;
 
-public class mylocation extends Fragment {
+public class mylocation extends Fragment implements ShopList.OnClickShoplistListener {
 
 
     private List<ShopListModel> shopList=new ArrayList<>();
@@ -47,7 +49,7 @@ public class mylocation extends Fragment {
 
         shoplistRecycylerView=view.findViewById(R.id.recycler_shoplist);
 
-        mshopList=new ShopList(shopList);
+        mshopList=new ShopList(shopList,this);
 
         RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getContext(),LinearLayoutManager.HORIZONTAL,false);
 
@@ -58,13 +60,21 @@ public class mylocation extends Fragment {
         shoplistRecycylerView.setAdapter(mshopList);
 
 
-        prepareMovieData();
+        ReadData();
 
 
+
+        return view;
+    }
+
+    @RequiresApi(api = Build.VERSION_CODES.M)
+    private void ReadData() {
 
 
         String url = "https://api.ipify.org/?format=json";
-
+        final ProgressDialog progressDialog = new ProgressDialog(getContext());
+        progressDialog.setMessage("Loading...");
+        progressDialog.show();
         //Request a string response from the URL resource
         JsonObjectRequest  JsonObjectRequest = new JsonObjectRequest(Request.Method.GET, url,null,
                 new Response.Listener<JSONObject>() {
@@ -74,16 +84,19 @@ public class mylocation extends Fragment {
                         try {
 //                            response.getJSONObject("ip");
 
-                            System.out.println("mubashir "+response.getJSONObject("ip"));
-
+                            ShopListModel  obj= new ShopListModel(response.getString("ip"));
+                            shopList.add(obj);
+                           // System.out.println("mubashir "+response.getString("ip"));
+                            mshopList.notifyDataSetChanged();
+                            progressDialog.dismiss();
 
                         } catch (JSONException e) {
                             e.printStackTrace();
+                            progressDialog.dismiss();
                         }
 
-                        System.out.println("mubashir "+response);
+                        //  System.out.println("mubashir "+response);
 //                        response.getJSONObject("ip");
-
 
                     }
 
@@ -93,6 +106,7 @@ public class mylocation extends Fragment {
             @Override
             public void onErrorResponse(VolleyError error) {
                 System.out.println("mubashir error "+error);
+                progressDialog.dismiss();
             }
         });
 
@@ -100,26 +114,12 @@ public class mylocation extends Fragment {
         RequestQueue queue = Volley.newRequestQueue(getContext());
         queue.add(JsonObjectRequest);
 
-
-        return view;
     }
 
-    private void prepareMovieData() {
-        ShopListModel  obj= new ShopListModel("Mad Max: Fury Road");
-        shopList.add(obj);
+    @RequiresApi(api = Build.VERSION_CODES.M)
+    @Override
+    public void onClickShoplist(int position) {
 
-        obj = new ShopListModel("Inside Out");
-        shopList.add(obj);
-
-        obj = new ShopListModel("Star Wars: Episode VII - The Force Awakens");
-        shopList.add(obj);
-
-        obj = new ShopListModel("Shaun the Sheep");
-        shopList.add(obj);
-
-        obj = new ShopListModel("The Martian");
-        shopList.add(obj);
-
-        mshopList.notifyDataSetChanged();
+        Toast.makeText(getContext(), "Net connection not okay"+position,Toast.LENGTH_SHORT).show();
     }
 }
