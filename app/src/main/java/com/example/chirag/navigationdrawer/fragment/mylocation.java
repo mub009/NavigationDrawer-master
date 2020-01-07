@@ -24,6 +24,7 @@ import com.example.chirag.navigationdrawer.model.Movie;
 import com.example.chirag.navigationdrawer.model.ShopListModel;
 
 import org.json.JSONArray;
+import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
@@ -65,20 +66,22 @@ public class mylocation extends Fragment {
         String url = "https://api.ipify.org/?format=json";
 
         //Request a string response from the URL resource
-        StringRequest stringRequest = new StringRequest(Request.Method.GET, url,
-                new Response.Listener() {
+        JsonObjectRequest  JsonObjectRequest = new JsonObjectRequest(Request.Method.GET, url,null,
+                new Response.Listener<JSONObject>() {
                     @Override
-                    public void onResponse(Object response) {
+                    public void onResponse(JSONObject response) {
 
+                        try {
+                            response.getJSONObject("ip");
+                            System.out.println("mubashir "+response);
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+//                        response.getJSONObject("ip");
 
-                        //JSONObject jsonArray = reader.getJSONObject(0).optJSONObject("scores")
-
-                        response = response.getJSONObject("ip");
-
-                       // JSONArray students = response.getJSONArray("students");
-                        System.out.println("mubashir "+response);
 
                     }
+
 
 
                 }, new Response.ErrorListener() {
@@ -90,7 +93,7 @@ public class mylocation extends Fragment {
 
         //Instantiate the RequestQueue and add the request to the queue
         RequestQueue queue = Volley.newRequestQueue(getContext());
-        queue.add(stringRequest);
+        queue.add(JsonObjectRequest);
 
 
         return view;
