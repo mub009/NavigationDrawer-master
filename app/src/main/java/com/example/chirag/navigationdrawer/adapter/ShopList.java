@@ -28,7 +28,7 @@ public class ShopList extends RecyclerView.Adapter<ShopList.MyViewHolder> {
 
         public MyViewHolder(View itemView) {
             super(itemView);
-            title=itemView.findViewById(R.id.Shopimage);
+            title=itemView.findViewById(R.id.titleName);
             image=itemView.findViewById(R.id.Shopimage);
         }
     }
@@ -50,7 +50,7 @@ public class ShopList extends RecyclerView.Adapter<ShopList.MyViewHolder> {
 
         holder.title.setText(soplistModelObj.getTitle());
 
-        holder.image.setImageResource(R.drawable.image2);
+        holder.image.setImageResource(R.drawable.profile);
 
         //holder.image.setImageURI(soplistModelObj.getImage());
 

@@ -11,10 +11,20 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonObjectRequest;
+import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
 import com.example.chirag.navigationdrawer.R;
 import com.example.chirag.navigationdrawer.adapter.ShopList;
 import com.example.chirag.navigationdrawer.model.Movie;
 import com.example.chirag.navigationdrawer.model.ShopListModel;
+
+import org.json.JSONArray;
+import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -38,7 +48,7 @@ public class mylocation extends Fragment {
 
         mshopList=new ShopList(shopList);
 
-        RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getContext());
+        RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getContext(),LinearLayoutManager.HORIZONTAL,false);
 
         shoplistRecycylerView.setLayoutManager(mLayoutManager);
 
@@ -48,6 +58,40 @@ public class mylocation extends Fragment {
 
 
         prepareMovieData();
+
+
+
+
+        String url = "https://api.ipify.org/?format=json";
+
+        //Request a string response from the URL resource
+        StringRequest stringRequest = new StringRequest(Request.Method.GET, url,
+                new Response.Listener() {
+                    @Override
+                    public void onResponse(Object response) {
+
+
+                        //JSONObject jsonArray = reader.getJSONObject(0).optJSONObject("scores")
+
+                        response = response.getJSONObject("ip");
+
+                       // JSONArray students = response.getJSONArray("students");
+                        System.out.println("mubashir "+response);
+
+                    }
+
+
+                }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                System.out.println("mubashir error "+error);
+            }
+        });
+
+        //Instantiate the RequestQueue and add the request to the queue
+        RequestQueue queue = Volley.newRequestQueue(getContext());
+        queue.add(stringRequest);
+
 
         return view;
     }
