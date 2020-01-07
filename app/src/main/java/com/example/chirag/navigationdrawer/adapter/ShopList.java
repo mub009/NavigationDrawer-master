@@ -39,6 +39,7 @@ public class ShopList extends RecyclerView.Adapter<ShopList.MyViewHolder> {
 
         @Override
         public void onClick(View view) {
+
             OnClickShoplistListener.onClickShoplist(getAdapterPosition());
         }
     }
@@ -63,13 +64,13 @@ public class ShopList extends RecyclerView.Adapter<ShopList.MyViewHolder> {
         holder.image.setImageResource(R.drawable.profile);
 
 
-        holder.image.setOnClickListener(new View.OnClickListener(){
-
-            @Override
-            public void onClick(View view) {
-                System.out.println("sss");
-            }
-        });
+//        holder.image.setOnClickListener(new View.OnClickListener(){
+//
+//            @Override
+//            public void onClick(View view) {
+//                System.out.println("sss");
+//            }
+//        });
 
         //holder.image.setImageURI(soplistModelObj.getImage());
 
