@@ -39,21 +39,6 @@ public class ServerResponse {
 
                         ApiDataInterface.readDataInterface(response);
 
-
-
-                        // Datareurn=response;
-
-                            //ShopListModel obj= new ShopListModel(response.getString("ip"));
-                            //shopList.add(obj);
-                            // System.out.println("mubashir "+response.getString("ip"));
-                           //                            mshopList.notifyDataSetChanged();
-                          //  progressDialog.dismiss();
-
-
-
-                        //  System.out.println("mubashir "+response);
-                        //                        response.getJSONObject("ip");
-
                     }
 
 
@@ -64,7 +49,6 @@ public class ServerResponse {
                 System.out.println("mubashir error "+error);
 
 
-              //  progressDialog.dismiss();
             }
         });
 

@@ -62,15 +62,10 @@ public class mylocation extends Fragment implements ShopList.OnClickShoplistList
 
         shoplistRecycylerView.setAdapter(mshopList);
 
-
-        ReadData();
-
         ServerResponse ServerResponse=new ServerResponse(this,getContext(), APIUrl.ipify);
         ServerResponse.read();
-        ServerResponse.read();ServerResponse.read();
-//        ServerResponse.readData(url,getContext());
-//         System.out.println("mubashir "+response);
-//
+        ServerResponse.read();
+        ServerResponse.read();
 
 
         return view;
@@ -82,8 +77,8 @@ public class mylocation extends Fragment implements ShopList.OnClickShoplistList
 
        // ServerResponse ServerResponseobj=new ServerResponse();
 
-        String url = "https://api.ipify.org/?format=json";
-        JSONObject response;
+       // String url = "https://api.ipify.org/?format=json";
+       //    JSONObject response;
         //response=ServerResponseobj.readData(url,getContext());
        // System.out.println("mubashir "+response);
 
@@ -146,6 +141,7 @@ public class mylocation extends Fragment implements ShopList.OnClickShoplistList
 
         final ProgressDialog progressDialog = new ProgressDialog(getContext());
         progressDialog.setMessage("Loading...");
+        progressDialog.show();
 
 
             try {
