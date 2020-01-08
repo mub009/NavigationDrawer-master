@@ -31,8 +31,6 @@ public class ServerResponse {
 
     public void read()
     {
-        System.out.println("hey12333");
-
 
         JsonObjectRequest JsonObjectRequest = new JsonObjectRequest(Request.Method.GET, this.URL,null,
                 new Response.Listener<JSONObject>() {
@@ -48,13 +46,13 @@ public class ServerResponse {
                             //ShopListModel obj= new ShopListModel(response.getString("ip"));
                             //shopList.add(obj);
                             // System.out.println("mubashir "+response.getString("ip"));
-//                            mshopList.notifyDataSetChanged();
+                           //                            mshopList.notifyDataSetChanged();
                           //  progressDialog.dismiss();
 
 
 
                         //  System.out.println("mubashir "+response);
-//                        response.getJSONObject("ip");
+                        //                        response.getJSONObject("ip");
 
                     }
 

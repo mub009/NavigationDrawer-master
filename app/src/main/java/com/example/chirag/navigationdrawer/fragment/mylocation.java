@@ -24,6 +24,7 @@ import com.example.chirag.navigationdrawer.R;
 import com.example.chirag.navigationdrawer.adapter.ShopList;
 import com.example.chirag.navigationdrawer.model.Movie;
 import com.example.chirag.navigationdrawer.model.ShopListModel;
+import com.example.chirag.navigationdrawer.utility.APIUrl;
 import com.example.chirag.navigationdrawer.utility.ApiDataInterface;
 import com.example.chirag.navigationdrawer.utility.ServerResponse;
 
@@ -64,9 +65,7 @@ public class mylocation extends Fragment implements ShopList.OnClickShoplistList
 
         ReadData();
 
-        String url = "https://api.ipify.org/?format=json";
-
-        ServerResponse ServerResponse=new ServerResponse(this,getContext(),url);
+        ServerResponse ServerResponse=new ServerResponse(this,getContext(), APIUrl.ipify);
         ServerResponse.read();
         ServerResponse.read();ServerResponse.read();
 //        ServerResponse.readData(url,getContext());
