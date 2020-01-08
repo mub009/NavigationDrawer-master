@@ -24,6 +24,8 @@ import com.example.chirag.navigationdrawer.R;
 import com.example.chirag.navigationdrawer.adapter.ShopList;
 import com.example.chirag.navigationdrawer.model.Movie;
 import com.example.chirag.navigationdrawer.model.ShopListModel;
+import com.example.chirag.navigationdrawer.utility.ApiDataInterface;
+import com.example.chirag.navigationdrawer.utility.ServerResponse;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -32,7 +34,7 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.List;
 
-public class mylocation extends Fragment implements ShopList.OnClickShoplistListener {
+public class mylocation extends Fragment implements ShopList.OnClickShoplistListener, ApiDataInterface {
 
 
     private List<ShopListModel> shopList=new ArrayList<>();
@@ -62,6 +64,14 @@ public class mylocation extends Fragment implements ShopList.OnClickShoplistList
 
         ReadData();
 
+        String url = "https://api.ipify.org/?format=json";
+
+        ServerResponse ServerResponse=new ServerResponse(this,getContext(),url);
+        ServerResponse.read();
+        ServerResponse.read();ServerResponse.read();
+//        ServerResponse.readData(url,getContext());
+//         System.out.println("mubashir "+response);
+//
 
 
         return view;
@@ -71,20 +81,76 @@ public class mylocation extends Fragment implements ShopList.OnClickShoplistList
     private void ReadData() {
 
 
+       // ServerResponse ServerResponseobj=new ServerResponse();
+
         String url = "https://api.ipify.org/?format=json";
+        JSONObject response;
+        //response=ServerResponseobj.readData(url,getContext());
+       // System.out.println("mubashir "+response);
+
+//
+//        String url = "https://api.ipify.org/?format=json";
+//        final ProgressDialog progressDialog = new ProgressDialog(getContext());
+//        progressDialog.setMessage("Loading...");
+//        progressDialog.show();
+//        //Request a string response from the URL resource
+//        JsonObjectRequest  JsonObjectRequest = new JsonObjectRequest(Request.Method.GET, url,null,
+//                new Response.Listener<JSONObject>() {
+//                    @Override
+//                    public void onResponse(JSONObject response) {
+//
+//                        try {
+////                            response.getJSONObject("ip");
+//
+//                            ShopListModel  obj= new ShopListModel(response.getString("ip"));
+//                            shopList.add(obj);
+//                           // System.out.println("mubashir "+response.getString("ip"));
+//                            mshopList.notifyDataSetChanged();
+//                            progressDialog.dismiss();
+//
+//                        } catch (JSONException e) {
+//                            e.printStackTrace();
+//                            progressDialog.dismiss();
+//                        }
+//
+//                        //  System.out.println("mubashir "+response);
+////                        response.getJSONObject("ip");
+//
+//                    }
+//
+//
+//
+//                }, new Response.ErrorListener() {
+//            @Override
+//            public void onErrorResponse(VolleyError error) {
+//                System.out.println("mubashir error "+error);
+//                progressDialog.dismiss();
+//            }
+//        });
+//
+//        //Instantiate the RequestQueue and add the request to the queue
+//        RequestQueue queue = Volley.newRequestQueue(getContext());
+//        queue.add(JsonObjectRequest);
+
+    }
+
+
+    @Override
+    public void onClickShoplist(int position) {
+
+       System.out.println("mubashir click"+position);
+    }
+
+    @RequiresApi(api = Build.VERSION_CODES.M)
+    @Override
+    public JSONObject readDataInterface(JSONObject url) {
+
         final ProgressDialog progressDialog = new ProgressDialog(getContext());
         progressDialog.setMessage("Loading...");
-        progressDialog.show();
-        //Request a string response from the URL resource
-        JsonObjectRequest  JsonObjectRequest = new JsonObjectRequest(Request.Method.GET, url,null,
-                new Response.Listener<JSONObject>() {
-                    @Override
-                    public void onResponse(JSONObject response) {
 
-                        try {
-//                            response.getJSONObject("ip");
 
-                            ShopListModel  obj= new ShopListModel(response.getString("ip"));
+            try {
+                            ShopListModel  obj= new ShopListModel(url.getString("ip"));
                             shopList.add(obj);
                            // System.out.println("mubashir "+response.getString("ip"));
                             mshopList.notifyDataSetChanged();
@@ -95,31 +161,7 @@ public class mylocation extends Fragment implements ShopList.OnClickShoplistList
                             progressDialog.dismiss();
                         }
 
-                        //  System.out.println("mubashir "+response);
-//                        response.getJSONObject("ip");
 
-                    }
-
-
-
-                }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                System.out.println("mubashir error "+error);
-                progressDialog.dismiss();
-            }
-        });
-
-        //Instantiate the RequestQueue and add the request to the queue
-        RequestQueue queue = Volley.newRequestQueue(getContext());
-        queue.add(JsonObjectRequest);
-
-    }
-
-    @RequiresApi(api = Build.VERSION_CODES.M)
-    @Override
-    public void onClickShoplist(int position) {
-
-        Toast.makeText(getContext(), "Net connection not okay"+position,Toast.LENGTH_SHORT).show();
+        return null;
     }
 }
