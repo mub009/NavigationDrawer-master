@@ -37,10 +37,15 @@ public class ServerResponse {
                     @Override
                     public void onResponse(JSONObject response) {
 
-                        ApiDataInterface.readDataInterface(response);
+                        try {
+                            ApiDataInterface.readDataInterface(response);
+                        }
+                        catch (Exception e)
+                        {
+                            System.out.println("Error"+e);
+                        }
 
                     }
-
 
 
                 }, new Response.ErrorListener() {

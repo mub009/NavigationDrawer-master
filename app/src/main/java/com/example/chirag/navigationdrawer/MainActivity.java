@@ -18,6 +18,7 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.Gravity;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Toast;
@@ -107,6 +108,7 @@ public class MainActivity extends AppCompatActivity implements ConnectvityCheck.
         t = new ActionBarDrawerToggle(this, dl,R.string.Open, R.string.Close);
 
         dl.addDrawerListener(t);
+
         t.syncState();
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
@@ -128,9 +130,11 @@ public class MainActivity extends AppCompatActivity implements ConnectvityCheck.
 
                         FragmentTransaction fragmentTransaction = fm.beginTransaction();
 
+                        dl.closeDrawer(Gravity.LEFT);
+
                         fragmentTransaction.replace(R.id.fragment_place, mainfragmentobj);
                         fragmentTransaction.commit();
-                        t.setDrawerIndicatorEnabled(false);
+                        t.setDrawerIndicatorEnabled(true);
                         break;
 
                     case R.id.account:
@@ -141,8 +145,10 @@ public class MainActivity extends AppCompatActivity implements ConnectvityCheck.
 
                         FragmentTransaction fragmentTransaction1 = fm1.beginTransaction();
 
+                        dl.closeDrawer(Gravity.LEFT);
+
                         fragmentTransaction1.replace(R.id.fragment_place, accountinfofragment);
-                        t.setDrawerIndicatorEnabled(false);
+                        t.setDrawerIndicatorEnabled(true);
                         fragmentTransaction1.commit();
 
                         break;
@@ -152,8 +158,11 @@ public class MainActivity extends AppCompatActivity implements ConnectvityCheck.
                         myLocationFragment =new mylocation();
                         FragmentManager fm2 = getFragmentManager();
                         FragmentTransaction fragmentTransaction2 = fm2.beginTransaction();
+
+                        dl.closeDrawer(Gravity.LEFT);
+
                         fragmentTransaction2.replace(R.id.fragment_place, myLocationFragment);
-                        t.setDrawerIndicatorEnabled(false);
+                        t.setDrawerIndicatorEnabled(true);
                         fragmentTransaction2.commit();
 
                         break;
