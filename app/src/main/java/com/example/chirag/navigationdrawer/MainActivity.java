@@ -28,6 +28,7 @@ import com.example.chirag.navigationdrawer.broadcast.ConnectvityCheck;
 import com.example.chirag.navigationdrawer.fragment.accountinfo;
 import com.example.chirag.navigationdrawer.fragment.mainfragment;
 import com.example.chirag.navigationdrawer.fragment.mylocation;
+import com.example.chirag.navigationdrawer.fragment.popup;
 import com.example.chirag.navigationdrawer.model.Movie;
 
 import java.util.ArrayList;
@@ -40,7 +41,7 @@ public class MainActivity extends AppCompatActivity implements ConnectvityCheck.
     private ActionBarDrawerToggle t;
     private NavigationView nv;
     private MoviesAdapter mAdapter;
-    private Fragment mainfragmentobj,accountinfofragment,myLocationFragment;
+    private Fragment mainfragmentobj,accountinfofragment,myLocationFragment,popupFragment;
 
     MyApplicationLauncher MyApplicationLauncher = new MyApplicationLauncher();
     private CoordinatorLayout coordinatorLayout;
@@ -164,6 +165,23 @@ public class MainActivity extends AppCompatActivity implements ConnectvityCheck.
                         fragmentTransaction2.replace(R.id.fragment_place, myLocationFragment);
                         t.setDrawerIndicatorEnabled(true);
                         fragmentTransaction2.commit();
+
+                        break;
+
+
+                    case R.id.mycart:
+
+
+                        popupFragment=new popup();
+
+                        FragmentManager fm3 = getFragmentManager();
+                        FragmentTransaction fragmentTransaction3 = fm3.beginTransaction();
+
+                        dl.closeDrawer(Gravity.LEFT);
+
+                        fragmentTransaction3.replace(R.id.fragment_place, popupFragment);
+                        t.setDrawerIndicatorEnabled(true);
+                        fragmentTransaction3.commit();
 
                         break;
 

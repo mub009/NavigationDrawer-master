@@ -16,8 +16,6 @@ import org.json.JSONObject;
 
 public class ServerResponse {
 
-
-
     ApiDataInterface ApiDataInterface;
     Context context;
     String URL;
